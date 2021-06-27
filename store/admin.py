@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author,Book,Category,Product
+from .models import Author,Book,Category,Product,Items
 # Register your models here.
 
 
@@ -30,4 +30,11 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields={
         'prod_slug':('prod_title',)
     }
+
+@admin.register(Items)
+class ItemAdmin(admin.ModelAdmin):
+    list_display=['item_title','lable','item_category']
+    list_display_links=[]
+    list_editable=['lable']
+    
     

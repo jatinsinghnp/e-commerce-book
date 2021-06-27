@@ -17,7 +17,9 @@ class HomePageView(TemplateView):
         context["prods"] = Product.objects.filter(isavaliabe=True)
         search_input=self.request.GET.get('search-area') or ''
         if search_input:
-            context['prods']=context['prods'].filter(prod_title__contains=search_input)
+            
+             context['prods']=context['prods'].filter(prod_title__contains=search_input)
+        context['search_input'] = search_input
         
         return context
 

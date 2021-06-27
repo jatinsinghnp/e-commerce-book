@@ -1,5 +1,9 @@
+
 from django.db import models
 from django.urls import reverse
+from .slugify import rand_slug
+from django.utils.text import slugify
+
 # Create your models here.
 
 class Author(models.Model):
@@ -58,6 +62,48 @@ class Product(models.Model):
        
     def get_absolute_url(self):
         return reverse("store:product_detail", args=[str(self.prod_slug)])
+
+
+ITEM_CHOICES=[
+    ('Primary','Primary'),
+    ('Secondary','Secondary'),
+    
+
+
+
+]
+
+class Items(models.Model):
+    item_title=models.ForeignKey(Product,on_delete=models.CASCADE,blank=False,null=False)
+    item_price=models.DecimalField(max_digits=5,decimal_places=2)
+    item_discount=models.DecimalField(max_digits=5,decimal_places=2,null=True,blank=True)
+
+    
+    item_category=models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,blank=True)
+    lable=models.CharField(max_length=220,choices=ITEM_CHOICES)
+    slug=models.SlugField(max_length=220,unique=True,blank=True)
+    
+    
+    def __str__(self):
+        return self.item_title.prod_title
+
+    class Meta:
+        verbose_name = "Items"
+        verbose_name_plural = "Items"
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(rand_slug() + "-" + self.item_title.prod_title)
+        super(Items, self).save(*args, **kwargs)
+    
+
+
+
+
+
+
+
+
     
 
 
