@@ -30,7 +30,7 @@
       </ul>
              <a href="{% url 'account:logout' %}" class="btn btn-danger">Log Out</a>
       &nbsp;
-      <form class="d-flex" method='GET'>
+      <form class="d-flex" method='GET' action="{% url 'store:home' %}">
       
       
         <input class="form-control me-2" type="search" placeholder="Search" type='text' name='search-area' placeholder="Search your task" value="{{search_input}}">
