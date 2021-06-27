@@ -1,6 +1,6 @@
-from django.db import models
 from django.shortcuts import get_object_or_404, render
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
@@ -29,7 +29,7 @@ class HomePageView(TemplateView):
 
 
   
-class PrductDetailView(DetailView):
+class PrductDetailView(DetailView,LoginRequiredMixin):
     
     template_name='store/details.html'
     context_object_name='product'
@@ -41,7 +41,7 @@ class PrductDetailView(DetailView):
 
 
 
-class CategoryListView(ListView):
+class CategoryListView(ListView,LoginRequiredMixin):
     template_name="store/products/category.html"
     context_object_name='prods'
     def get_queryset(self):

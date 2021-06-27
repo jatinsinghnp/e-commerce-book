@@ -6,7 +6,7 @@
 {% block content %}
 
 
-{%  if user.is_authenticated  %}
+
  <div class="album py-5 bg-light">
 <div class="container my-3">
   <!-- Content here -->
@@ -53,15 +53,12 @@
         {% endfor %}
 </div>
 </div>
-{% else %}
 
 
-<p>You are not logged in</p>
-<a href="{% url 'account:login' %}">Log In</a> 
-<a href="{% url 'account:register' %}">Register Here</a> 
 
 
-{% endif %}
+
+
 
 {% endblock content %}
 
