@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'store',
     'accounts.apps.AccountsConfig',
     'crispy_forms',
+    'cart',
 ]
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
