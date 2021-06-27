@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% load crispy_forms_tags %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'static/main.css' %}">
+{% block content %}
+
+<form action="" method="post">
+{% csrf_token %}
+{{form|crispy}}
+<input type="submit">
+</form>
+<a href="{% url 'account:register' %}">Register Here</a> 
+
+
+
+
+
+
+
+{% endblock content %}
